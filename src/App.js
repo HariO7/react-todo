@@ -1,7 +1,9 @@
 
-
+import { useState } from 'react';
 import './App.css'
 function App() {
+  const [toDos,setToDos] = useState([])
+  const [toDo,setToDo] = useState('')
   return (
     <div>
       <div className="app">
@@ -13,19 +15,26 @@ function App() {
         <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
       </div>
       <div className="input">
-        <input type="text" placeholder="🖊️ Add item..." />
-        <i className="fas fa-plus"></i>
+        <input value={toDo} onChange={(e)=>setToDo(e.target.value)} type="text" placeholder="🖊️ Add item..." />
+        <i onClick={()=>setToDos([...toDos,toDo])} className="fas fa-plus"></i>
       </div>
       <div className="todos">
-        <div className="todo">
+        { toDos.map((value)=>{
+
+          return(
+
+          <div className="todo">
           <div className="left">
             <input type="checkbox" name="" id="" />
-            <p>Rect tutorial</p>
+            <p>{value}</p>
           </div>
           <div className="right">
             <i className="fas fa-times"></i>
           </div>
         </div>
+            )
+        })
+    }
       </div>
     </div>
     </div>
